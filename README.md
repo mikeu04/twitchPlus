@@ -1,6 +1,5 @@
-
-Twitch+ | Personalized Twich Resources Recommendation Engine
-Jun 2024 - Jul 2024
+**Twitch+ | Personalized Twich Resources Recommendation Engine**
+_Jun 2024 - Jul 2024_
 
 - Developed a full-stack Spring Boot application enabling search and personalized recommendations for Twitch resources (streams/videos/clips).
 - Enhanced user experience and web page responsiveness with React and Ant Design Library. 
