@@ -31,7 +31,7 @@ public class UserService {
     public void register(String username, String password, String firstName, String lastName) {
         UserDetails user = User.builder()
                 .username(username)
-                .password(passwordEncoder.encode(password))
+                .password(passwordEncoder.encode(password)) // 如果不encode password, 假如Backend DB 被 hacker 攻破了，hacker 就能直接拿到所有用户的原密码
                 .roles("USER")
                 .build();
         userDetailsManager.createUser(user);

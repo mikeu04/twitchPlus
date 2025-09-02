@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
-
+    // SpringSecurity 自带 User Login/ Logout logic. 无需再写。
 
     private final UserService userService;
 
