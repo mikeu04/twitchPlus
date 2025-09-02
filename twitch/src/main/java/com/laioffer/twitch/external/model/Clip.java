@@ -3,7 +3,10 @@ package com.laioffer.twitch.external.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
+/* 根据Twitch 官方文档:
+ * 将Twitch Server API 返回的 Json 格式下的 snake_case 变量
+ * mapping 到 Java Class 里的 camelCase 变量
+ */
 public record Clip(
         String id,
         String url,

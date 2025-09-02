@@ -1,5 +1,5 @@
 spring:
-  jackson:
+  jackson: # Convert Between Java Class and JSON. Faster than GSON at backend, but consumes more memory.
     default-property-inclusion: non_null
   cloud:
     openfeign:
@@ -17,7 +17,7 @@ spring:
     oauth2:
       client:
         registration:
-          twitch:
+          twitch: # Authentication to connect TwitchApiClient to Twitch Server.
             authorization-grant-type: client_credentials
             client-authentication-method: client_secret_post
             client-id: "i1omjjvbkanc0tsdz1r2s9dxl36wbh"
@@ -27,21 +27,19 @@ spring:
             token-uri: https://id.twitch.tv/oauth2/token
   datasource:
     url: jdbc:mysql://${DATABASE_URL:localhost}:${DATABASE_PORT:3306}/twitch?createDatabaseIfNotExist=true
-    username: ${DATABASE_USERNAME:root}
+    username: ${DATABASE_USERNAME:root} #Key:Value. Value 有默认值（LocalHost）. 但当部署到AWS App Runner后，Key -> 定义的环境变量, 不再用默认值。
     password: ${DATABASE_PASSWORD:secret}
     driver-class-name: com.mysql.cj.jdbc.Driver
-  sql:
+  sql: # initialize DB based on database-init.sql
     init:
-      mode: always
+      mode: always # 每一次server 启动都会重新清空 DB. 如果不想清空的话，可以改成 Never。当然，为了安全，最好的办法是直接去掉这个property, 用更复杂的Migration Tool.
       schema-locations: "classpath:database-init.sql"
-  cache:
+  cache: # Local Cache
     caffeine:
-      spec: expireAfterWrite=1m
+      spec: expireAfterWrite=1m # 存 1min 的 Cache. eg. getTopGames() 在 1 min 内响应很快，过了就要重新再 fetch results。
 
 
-
-
-logging:
+logging: # define when to log
   level:
     com.laioffer.twitch.external.TwitchApiClient: DEBUG
     org.apache.coyote.http11.Http11InputBuffer: TRACE # Incoming http requests

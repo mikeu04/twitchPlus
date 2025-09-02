@@ -12,11 +12,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/* 处理与 Twitch API 的所有交互。它依赖于 TwitchApiClient 来获取原始数据。
+ */
 @Service
 public class TwitchService {
-
-
     private final TwitchApiClient twitchApiClient;
 
 

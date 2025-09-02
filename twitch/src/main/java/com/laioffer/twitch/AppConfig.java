@@ -22,6 +22,8 @@ import javax.sql.DataSource;
 
 @Configuration
 public class AppConfig {
+    // 给SpringBoot 提供 所需要的 Dependencies. 都是之后要被injected 到其他 Components 来使用的 Beans.
+    // 有一些不能在 application.yml 里定义的也会写在这里
 
 
     @Bean
@@ -36,6 +38,7 @@ public class AppConfig {
                                 .requestMatchers(HttpMethod.GET, "/recommendation", "/game").permitAll()
                                 .anyRequest().authenticated()
                 )
+                // For the below Exceptions, NO redirection logic needed. Just Return an HTTP Status Code.
                 .exceptionHandling()
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 .and()

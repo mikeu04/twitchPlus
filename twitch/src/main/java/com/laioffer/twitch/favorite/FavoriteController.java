@@ -41,8 +41,10 @@ public class FavoriteController {
     public void setFavoriteItem(@AuthenticationPrincipal User user, @RequestBody FavoriteRequestBody body) {
         UserEntity userEntity = userService.findByUsername(user.getUsername());
         try {
+            // Handle user favorites an item twice. Prevent duplicate repository entries
             favoriteService.setFavoriteItem(userEntity, body.favorite());
         } catch (DuplicateFavoriteException e) {
+            // later handled by GlobalControllerExceptionhandler
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Duplicate entry for favorite record", e);
         }
     }

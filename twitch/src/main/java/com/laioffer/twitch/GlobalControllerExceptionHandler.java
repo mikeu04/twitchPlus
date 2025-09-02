@@ -11,8 +11,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 @ControllerAdvice
 public class GlobalControllerExceptionHandler {
+    // 所有其他细分的 Controller 运行下（call Service）出现的 Exception 统一在这处理
 
-
+    // Handle 所有没见过的 Exceptions.
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<TwitchErrorResponse> handleDefaultException(Exception e) {
         return new ResponseEntity<>(
@@ -24,7 +25,7 @@ public class GlobalControllerExceptionHandler {
         );
     }
 
-
+    // Handle 所有 Controller throw 出来的明确的 Bad Request Codes.
     @ExceptionHandler(ResponseStatusException.class)
     public final ResponseEntity<TwitchErrorResponse> handleResponseStatusException(ResponseStatusException e) {
         return new ResponseEntity<>(

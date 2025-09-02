@@ -29,16 +29,16 @@ dependencyManagement {
 
 
 dependencies {
-    implementation 'com.github.ben-manes.caffeine:caffeine:3.+'
+    implementation 'com.github.ben-manes.caffeine:caffeine:3.+' //Local Cache. 只有一个Service. 非Distributed.
     implementation 'net.datafaker:datafaker:2.2.2'
-    implementation 'org.springframework.boot:spring-boot-starter-cache'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springframework.boot:spring-boot-starter-cache' // 包含了 很多 Cache 相关的 Libraries
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc' // Repositories. Access Database.
+    implementation 'org.springframework.boot:spring-boot-starter-security' // 包含了 Session/Token/Basic... Authentication. 此项目用的是Session。
+    implementation 'org.springframework.boot:spring-boot-starter-web' // 让Controller，Server 等跑起来
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign' // TwitchApiClient 代理客户端
     implementation 'org.springframework.security:spring-security-oauth2-client'
-    runtimeOnly 'com.mysql:mysql-connector-j'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    runtimeOnly 'com.mysql:mysql-connector-j' // Spring Data JDBC 的驱动 Driver。允许OS和设备进行通信。 例如，当应用需要从设备读取数据时，它会调用操作系统的函数。
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // 包含了 Unit tests 需要的 Libraries.
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 

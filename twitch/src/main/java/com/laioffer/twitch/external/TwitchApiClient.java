@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-
+/* TwitchApiClient 是你后端代码中负责与 Twitch API 通信的代理客户端
+ * 负责代理真实用户发送 HTTP 请求 到 Twitch Server.
+ */
 @FeignClient(name = "twitch-api")
 public interface TwitchApiClient {
 

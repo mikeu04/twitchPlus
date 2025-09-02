@@ -44,13 +44,13 @@ public class RecommendationService {
             //如果用户没有注册，提供最流行的items
             gameIds  = twitchService.getTopGameIds();
         } else {
-            //如果用户注册了，查看用户之前喜欢的items
+            //如果用户注册了，查看用户之前是否有喜欢过items
             List<ItemEntity> items = favoriteService.getFavoriteItems(userEntity);
             if (items.isEmpty()) {
-                //如果用户注册了，但没有喜欢过东西，提供最流行的items
+                //如果用户没有喜欢过东西，提供最流行的games
                 gameIds = twitchService.getTopGameIds();
             } else {
-                //如果用户注册了，并喜欢过东西，去除重复的items(指向同一游戏)及已经看过的items并返回
+                //如果用户有喜欢过的items，拿到这些items对应的gameIds, 并推荐 "属于这些gameIds的" 且 "用户还没有喜欢过的" 新 items.
                 Set<String> uniqueGameIds = new HashSet<>();
                 for (ItemEntity item : items) {
                     uniqueGameIds.add(item.gameId());
